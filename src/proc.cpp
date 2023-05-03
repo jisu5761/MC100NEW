@@ -250,8 +250,9 @@ void mc100_init(void)
 	sprintf(mc100live.xbuf, "ver%3.1f", MODEL_VERSION);
 	hputs(0, 0, mc100live.xbuf, 0);
 	convert_img_ws2812(CRGB::Blue, 0);
-
 	Serial.println(mc100live.xbuf);
+	FastLED.show();	
+	delay(1000);
 
 
 	if (!digitalRead(SW1) && !digitalRead(SW2))
@@ -2131,11 +2132,11 @@ void wifiupdate(void)
 
   String url = "http://otadrive.com/deviceapi/update?";
   url += "k=a4644fa3-1542-43c6-a4cb-6fea9946895d";
-  url += "&v=1.0.0.37";
+  url += "&v=1.0.0.40";
   url += "&s=" + getChipId();
 
   WiFiClient client;
-  httpUpdate.update(client, url, "1.0.0.37");
+  httpUpdate.update(client, url, "1.0.0.40");
 }
 //------------------------------------------------------------------------------
 void checkplay_sound(void)		//100msec
